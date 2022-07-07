@@ -17,13 +17,13 @@ export class TitleClassComponent extends React.Component {
 
         const {text, component} = this.props
 
-        // const Component = () => component === "h1" ?
-        //   <h1 id="pageTitle" className={component}>{text}</h1>
-        //   : <div className={component} >{text}</div>
+        // const Component = () => components === "h1" ?
+        //   <h1 id="pageTitle" className={components}>{text}</h1>
+        //   : <div className={components} >{text}</div>
 
-        // const Variable = component === "h1" ?
-        //   <h1 id="pageTitle" className={component}>{text}</h1>
-        //   : <div className={component} >{text}</div>
+        // const Variable = components === "h1" ?
+        //   <h1 id="pageTitle" className={components}>{text}</h1>
+        //   : <div className={components} >{text}</div>
         // return Variable
         return component === "h1" ? this.renderH1() : this.renderDivComponent()
     }

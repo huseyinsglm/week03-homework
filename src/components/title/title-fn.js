@@ -7,9 +7,9 @@ export function TitleFnComponent (props) {
     }
 
 
-    // return component !== "h1" ?
-    //   <div className={component} onClick={onClicked}>{text}</div> :
-    //   <h1 id="pageTitle" className={component} onClick={onClicked}>{text}</h1>
+    // return components !== "h1" ?
+    //   <div className={components} onClick={onClicked}>{text}</div> :
+    //   <h1 id="pageTitle" className={components} onClick={onClicked}>{text}</h1>
 
     const renderH1 = () => {
         return <h1 id="pageTitle" className={component}>{text}</h1>
@@ -19,13 +19,13 @@ export function TitleFnComponent (props) {
         return <div className={component} onClick={onClicked}>{text}</div>
     }
 
-    // switch (component) {
+    // switch (components) {
     //   case "h1":
-    //     return <h1 id="pageTitle" className={component} onClick={onClicked}>{text}</h1>
+    //     return <h1 id="pageTitle" className={components} onClick={onClicked}>{text}</h1>
     //     break;
 
     //   default:
-    //     return <div className={component} onClick={onClicked}>{text}</div>
+    //     return <div className={components} onClick={onClicked}>{text}</div>
     // }
     switch (component) {
         case "h1":

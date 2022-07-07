@@ -30,16 +30,15 @@ export function DataGrid() {
             });
     };
 
-    //MEVCUT TODOlAR
-
+    //todos
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = items.slice(indexOfFirstPost, indexOfLastPost);
 
-    //PAGİNATİON
+    //sayfalandırma
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    //STRİNG SORT ÖTNETİMİ
+    //string  sort yönetimi
     const sorting = (col) => {
         if (order === "ASC") {
             const sorted = [...items].sort((a, b) =>
