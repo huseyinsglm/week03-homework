@@ -1,33 +1,57 @@
-import React, { useState } from 'react';
 import './App.css';
-// import other from './Other.module.css'; .module is important!
-// import { TitleClassComponent, TitleFnComponent } from "./components/title"
+import {createContext, useState} from "react";
+import ReactSwitch from "react-switch";
+import {TodoFnComponent, TodoClsComponent} from './components/todos';
+import {PostFnComponent, PostClsComponent} from './components/post';
+import {Button} from './components/button';
+import {Header} from "./components/header";
 
-// import { ContactFormClassComponent, ContactFormFnComponent } from "./components/contact"
-import { DataGrid, DataGridClsComponent } from './components/data-grid';
-import { Header } from './components/header';
-import { Button } from "./components/button"
+export const ThemeContext = createContext(null);
 
 function App() {
-    const [activeTab, setActiveTab] = useState("fn")
+    //açılış ekranı açık renk başlar
+    const [theme, setTheme] = useState("light");
+    const [activeTab, setActiveTab] = useState("todo-cls")
 
-  return (
-      <div className="App">
-        <Header />
-        {/* <ContactFormClassComponent /> */}
-        <div className='container'>
-          <div className="btn-group tabs" role="group" ariaLabel="Basic example">
-            <Button onClick={() => setActiveTab("cls")} className={activeTab === "cls" ? "btn btn-primary" : "btn btn-default"}>Class Component</Button>
-            <Button onClick={() => setActiveTab("fn")} className={activeTab === "fn" ? "btn btn-primary" : "btn btn-default"}>Fn Component</Button>
-          </div>
-          <br />
-          { activeTab === "fn" ? <DataGrid /> : <DataGridClsComponent />}
-        </div>
-      </div>
-  );
+    const toggleTheme = () => {
+        setTheme((curr) => (curr === "light" ? "dark" : "light"));
+    };
+
+    return (
+        <ThemeContext.Provider value={{theme, toggleTheme}}>
+            <Header />
+            <div className="App" id={theme}>
+                <div className="switch">
+                    <label> {theme === "light" ? "Light" : "Dark"}</label>
+                    <ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
+                </div>
+                <div className='container'>
+                    <div className="btn-group tabs" role="group" aria-label="Basic example">
+                        <Button onClick={() => setActiveTab("todo-cls")}
+                                className={activeTab === "todo-cls" ? "btn btn-primary" : "btn btn-default"}>Todos Class
+                            Component</Button>
+                        <Button onClick={() => setActiveTab("todo-fn")}
+                                className={activeTab === "todo-fn" ? "btn btn-primary" : "btn btn-default"}>Todos Fn
+                            Component</Button>
+                        <Button onClick={() => setActiveTab("post-cls")}
+                                className={activeTab === "post-cls" ? "btn btn-primary" : "btn btn-default"}>Post Class
+                            Component</Button>
+                        <Button onClick={() => setActiveTab("post-fn")}
+                                className={activeTab === "post-fn" ? "btn btn-primary" : "btn btn-default"}>Post Fn
+                            Component</Button>
+                    </div>
+                    <br/>
+                    {/* Çoklu koşul  işlemleri */}
+                    {activeTab === "todo-cls" ? <TodoClsComponent/> : null}
+                    {activeTab === "todo-fn" ? <TodoFnComponent/> : null}
+                    {activeTab === "post-cls" ? <PostClsComponent/> : null}
+                    {activeTab === "post-fn" ? <PostFnComponent/> : null}
+                </div>
+            </div>
+
+        </ThemeContext.Provider>
+
+    );
 }
-
-
-
 
 export default App;
